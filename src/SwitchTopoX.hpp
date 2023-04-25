@@ -49,8 +49,13 @@ class SwitchTopoX {
     explicit SwitchTopoX(const Topology *topo_in, const Topology *topo_out, const int shift[3], H3LPR::Profiler *prof);
     virtual ~SwitchTopoX();
 
-    virtual bool need_send_buf()const  = 0;
-    virtual bool need_recv_buf()const  = 0;
+    virtual bool need_send_buf() const = 0;
+    virtual bool need_recv_buf() const = 0;
+
+    /**
+     * @brief defines if the SwitchTopoX is able to overlap communication and computations
+     */
+    virtual bool overlap_comm() const { return false; }
 
     // abstract functions
     void setup();

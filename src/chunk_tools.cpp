@@ -15,10 +15,11 @@
  * @param shift location of the (0,0,0) of topo_in in the topo_out
  * @param topo_in the input topology = the home topology of the chunks
  * @param topo_out the output topology, the destination of the chunks (comm and rank depend on topo_out)
+ * @param max_size is the maximum size of a chunk in each of the directions
  * @param n_chunks the number of chunks created to intersect the topologies
  * @param chunks array of created chunks
  */
-void PopulateChunk(const int shift[3], const Topology* topo_in, const Topology* topo_out, int* n_chunks, MemChunk** chunks) {
+void PopulateChunk(const int shift[3], const Topology* topo_in, const Topology* topo_out, const int max_size[3], int* n_chunks, MemChunk** chunks) {
     BEGIN_FUNC;
     //--------------------------------------------------------------------------
     // NOT NEEDED as we imposed identical communicators
@@ -77,6 +78,8 @@ void PopulateChunk(const int shift[3], const Topology* topo_in, const Topology* 
         // both ranks are included!
         const int n_ranks = (erank[id] - srank[id] + 1);
         n_chunks[0] *= m_max(n_ranks, 0);
+
+        // finally we need to make sure we don't overtake the maximum size allowed for a single chunk
     }
     FLUPS_INFO("sranks = %d %d %d - eranks = %d %d %d -> nchunks = %d", srank[0], srank[1], srank[2], erank[0], erank[1], erank[2], n_chunks[0]);
     *chunks = reinterpret_cast<MemChunk*>(m_calloc(n_chunks[0] * sizeof(MemChunk)));
