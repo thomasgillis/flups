@@ -19,13 +19,13 @@ SwitchTopoX_isr::SwitchTopoX_isr(const Topology *topo_in, const Topology *topo_o
     END_FUNC;
 }
 
-void SwitchTopoX_isr::setup_buffers(opt_double_ptr sendData, opt_double_ptr recvData) {
+void SwitchTopoX_isr::setup_buffers(const size_t sizeData, opt_double_ptr sendData, opt_double_ptr recvData) {
     BEGIN_FUNC;
     FLUPS_CHECK(sendData == nullptr, "The send data must be = to nullptr");
     FLUPS_CHECK(recvData != nullptr, "The recv data must be != to nullptr");
     //--------------------------------------------------------------------------
     // first setup the basic stuffs
-    this->SwitchTopoX::setup_buffers(sendData, recvData);
+    this->SwitchTopoX::setup_buffers(sizeData,sendData, recvData);
 
     //..........................................................................
     // once we have the MemChunks we can allocate the communication information

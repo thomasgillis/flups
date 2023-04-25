@@ -23,11 +23,11 @@ SwitchTopoX_a2a::SwitchTopoX_a2a(const Topology *topo_in, const Topology *topo_o
     END_FUNC;
 }
 
-void SwitchTopoX_a2a::setup_buffers(opt_double_ptr sendData, opt_double_ptr recvData) {
+void SwitchTopoX_a2a::setup_buffers(const size_t sizeData, opt_double_ptr sendData, opt_double_ptr recvData) {
     BEGIN_FUNC;
     //--------------------------------------------------------------------------
     // first setup the basic stuffs
-    this->SwitchTopoX::setup_buffers(sendData, recvData);
+    this->SwitchTopoX::setup_buffers(sizeData, sendData, recvData);
 
     // Retrieve MPI information for the subcomm
     int sub_rank, sub_size;

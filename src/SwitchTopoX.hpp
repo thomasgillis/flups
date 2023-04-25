@@ -55,7 +55,7 @@ class SwitchTopoX {
     // abstract functions
     void setup();
     virtual void print_info() const;
-    virtual void setup_buffers(opt_double_ptr sendData, opt_double_ptr recvData);
+    virtual void setup_buffers(size_t buf_size, opt_double_ptr sendData, opt_double_ptr recvData);
     virtual void execute(opt_double_ptr data, const int sign) const = 0;
     virtual void disp() const                                       = 0;
     

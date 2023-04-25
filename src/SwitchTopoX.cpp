@@ -102,7 +102,7 @@ void SwitchTopoX::setup() {
  * @param sendData 
  * @param recvData 
  */
-void SwitchTopoX::setup_buffers(opt_double_ptr sendData, opt_double_ptr recvData){
+void SwitchTopoX::setup_buffers(const size_t sizeData, opt_double_ptr sendData, opt_double_ptr recvData){
     BEGIN_FUNC;
     FLUPS_CHECK(this->need_recv_buf() || this->need_recv_buf(),"not needing any buffer is incompatible with the inplace approach");
     //..........................................................................

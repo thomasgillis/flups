@@ -873,7 +873,8 @@ void Solver::allocate_switchTopo_(const int ntopo, SwitchTopo **switchtopo, opt_
     for (int id = 0; id < ntopo; id++) {
         if (switchtopo[id] != NULL) {
 #if (FLUPS_MPI_AGGRESSIVE)
-            switchtopo[id]->setup_buffers(need_send ? (*send_buff)() : nullptr,
+            switchtopo[id]->setup_buffers(max_mem,
+                                          need_send ? (*send_buff)() : nullptr,
                                           need_recv ? (*recv_buff)() : nullptr);
 #else
             switchtopo[id]->setup_buffers(*send_buff, *recv_buff);
